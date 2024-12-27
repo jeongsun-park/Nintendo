@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nintendo</title>
+    <!--웹폰트(구글)-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    
+ 
+  
+  </head>
+  <style>
+  /*웹폰트(눈누) */
+ /*프리텐다드 Light */
+  @font-face {
+  font-family: 'Pretendard-Light';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  /*프리텐다드 ExtraLight */
+  @font-face {
+  font-family: 'Pretendard-ExtraLight';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  } 
+  /*평창평화체 Light */
+  @font-face {
+  font-family: 'PyeongChangPeace-Light';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Light.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+    /* 초기화 - 웹페이지마다 공통적으로 적용하는 스타일 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    li {
+      list-style: none;
+    }
+    a {
+      text-decoration: none; /* a 태그의 밑줄 없애기*/
+    }
+    body {
+      background-color: white;
+    }
+    .wrapper {
+      width: 960px; /*가로 사이즈 지정*/
+      margin: 0 auto; /*가로 중간 정렬*/
+    }
+    /* 헤더스타일 */
+    header {
+      height: 200px; /*세로 사이즈지정*/
+      position: relative; /*위치지정, 자식이 absolute일경우 부모는 relative가 되어야한다*/
+      /*background-image:url("img/ubdex_back.jpg");*/
+      text-align: center;
+    }
+    /* header의 li만 가로정렬 */
+    header li {
+      float: left;
+    }
+    header #title {
+      position: absolute; /*절대위치*/
+      left: 50%;
+      transform: translateX(-50%);
+      top: 30px; /*위치지정*/
+     
+    }
+    header #title img{
+      margin: 20px;
+    }
+    /*header 내 a태그에 대해 배경색과 글자색 지정*/
+    header a {
+      color: black;
+    }
+
+    /*gnb*/
+    header #main_gnb {
+      width: 100%;
+      position: absolute; /*절대위치*/
+      right: 0;
+      top: 0; /*위치지정*/
+    }
+    header #main_gnb ul {
+      width: 960px;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      justify-content: right;
+    }
+    /*header내 글로벌 메뉴의 a태그의 안쪽여백 지정*/
+    header #main_gnb li a {
+      display: inline-block; /* 블럭으로 지정*/
+      padding: 2px 10px; /* 위,아래 여백지정*/
+      color: rgb(226, 0, 0);
+      font-family: "Titillium Web", sans-serif;
+
+      font-style: normal;
+    }
+    header #main_gnb li a:hover {
+      font-weight: bold;
+    }
+    /*lnb*/
+    header #main_lnb {
+      width: 100%;
+      background-color: rgb(255, 255, 255,0.99);
+      position: fixed;
+      top: 138px;
+      transition: top 0.3s;
+      z-index: 10; 
+    }
+  
+    header #main_lnb ul {
+      width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+    header #main_lnb li:first-child {
+      border-left: 1px solid rgb(218, 215, 215);
+      
+    }
+    /*header내 로컬 메뉴의 a태그의 안쪽여백 지정*/
+    header #main_lnb li a {
+      display: inline-block; /* 블럭으로 지정*/
+      padding: 21px 56px; /* 위,아래 여백지정*/
+      color: rgb(90, 86, 86);
+      border-right:  1px solid rgb(218, 215, 215);
+      
+
+      /*글씨체*/
+      font-family: 'Pretendard-Light';
+    }
+    header #main_lnb li a:hover {
+      border-top: 1px solid rgb(226, 0, 0) ;
+      color:rgb(226, 0, 0) ;
+     font-weight: bold;
+    }
+    /*메인 이미지 */
+    .main-content {
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .fade {
+      animation: fade 1.8s;
+    }
+    @keyframes fade {
+      from {
+        opacity: 0.4;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /*콘텐츠 스타일*/
+    #content {
+      width: 960px; /*가로 사이즈 지정*/
+      margin: 50px auto; /*가로 중간 정렬*/
+      background-color: rgba(255, 255, 255, 0.5);
+      overflow: hidden;
+      /* 자식들이 float 속성을 가질때  부모의 높이가 가변적일 경우
+      입력해줌 /footer가 위로 끌려오지않게 사용*/
+    }
+    #content section {
+      width: 750px;
+      float: left;
+    }
+    #content section article {
+      border-bottom: 1px solid rgb(206, 206, 206);
+      padding: 20px;
+      margin-bottom: 45px;
+    }
+    #content section article img{
+      margin: 15px 2px;
+    }
+    .game_title {
+      font-size :150%;
+      margin-bottom: 5px;
+      padding-left: 15px;
+      border-left: 3px solid rgb(226, 0, 0);
+      border-left-style: dotted;
+      
+      /*폰트*/
+      font-family: 'PyeongChangPeace-Light';
+    }
+    .h3{
+      font-family: 'Pretendard-Light';
+      margin: 15px 0 15px 0;
+      font-size: 19px;
+    }
+    p{
+      font-family: 'Pretendard-ExtraLight';
+      font-size: 17px;
+      line-height: 27px
+    }
+    /* 탭 */
+    #content aside {
+      margin-top: 20px;
+      width: 200px;
+      float: right;
+    }
+    #content aside input {
+      display: none; /*라디오버튼을 화면에서 빼기(기능은작동)*/
+    }
+
+    aside .buttons label {
+      /* border: 1px solid black; */
+      display: inline-block;
+      float: left;
+      width: 100px;
+      font-family: 'Pretendard-Light';
+      box-sizing: border-box;
+      height: 30px;
+      background-color: rgb(224, 224, 224);
+      color: rgb(102, 102, 102);
+      text-align: center; /*글자 가로정렬*/
+      line-height: 30px;
+      /* 박스의 높이값을 줄간격값으로 지정해 세로정렬 시킴 (한줄일경우)*/
+      /* 여러줄일땐 padding값을 줘서 세로정렬*/
+    }
+    aside .buttons label:nth-of-type(1){
+      border-radius:15px 0 0 0;
+    }
+    aside .buttons label:nth-of-type(2){
+      border-radius: 0 15px 0 0;
+    }
+    input:nth-of-type(1):checked ~ div.buttons label:nth-of-type(1) {
+      /*input 첫번째가*/
+      background: rgb(226, 0, 0);
+      color: rgb(255, 255, 255);
+    }
+    input:nth-of-type(2):checked ~ div.buttons label:nth-of-type(2) {
+      background: rgb(226, 0, 0);
+      color: rgb(255, 255, 255);
+    }
+    /* 탭 메뉴 스타일 */
+    /* 탭 메뉴를 둘다 숨기기 */
+    .tab_item {
+      display: none;
+    }
+    /* 첫번째 input 태그가 선택이 되면 동위선상에 있는 첫번째 section을 보이게 하기*/
+    input:nth-of-type(1):checked ~ section:nth-of-type(1) {
+      display: block;
+    }
+    /* 두번째 input 태그가 선택이 되면 동위선상에 있는 두번째 section을 보이게 하기*/
+    input:nth-of-type(2):checked ~ section:nth-of-type(2) {
+      display: block;
+    }
+    /* 탭 메뉴 목록 스타일 */
+   
+    .item {
+
+      padding: 15px 10px 10px 10px;
+      border: 1px solid rgb(223, 223, 223);
+      border-top: none;
+      overflow: hidden;
+      width: 200px;
+      
+    }
+    .item:last-of-type{
+      border-radius: 0 0 15px 15px;
+    }
+    .item .thumbnail {
+      width: 45px;
+      float: left;
+    }
+    .item .description {
+      width: 120px;
+      float: left;
+      margin-left: 10px;
+    }
+    .description > strong {
+      display: block;
+      width: 120px;
+      white-space: nowrap; /* 자동 줄바꿈 금지*/
+      overflow: hidden; /* 글자가 가로 폭을 초과할 때 숨기기*/
+      text-overflow: ellipsis; /* 글자가 가로 폭을 초과할 때 말줄임 처리*/
+      font-family: 'Pretendard-ExtraLight';
+      text-decoration: none;
+      color: black;
+    }
+    .description > span{
+      color: rgb(226, 0, 0);
+      font-size: 80%;
+      font-family: 'Pretendard-ExtraLight'
+    }
+    .description> .sale{
+      color: rgb(207, 207, 207);
+      text-decoration: line-through;
+      font-family: 'Pretendard-ExtraLight'
+    }
+    /*icon*/
+    #bottom{
+      height: 150px; /*세로 사이즈지정*/
+      text-align: center; /* 안에 요소들을 가로 중간정렬*/
+      padding: 60px;
+    }
+    #bottom a{
+      margin: 0 10px;
+    }
+    /*푸터스타일*/
+    footer {
+      background-color: rgb(226, 0, 0);
+      height: 200px; /*세로 사이즈지정*/
+      text-align: center; /* 안에 요소들을 가로 중간정렬*/
+      padding: 30px;
+    }
+    footer #slogan{
+    font-size: xx-large;
+    color: rgb(223, 223, 223);
+    margin: 10px;
+    font-family: "Tangerine", cursive;
+    font-weight: 700;
+    font-style: normal;
+    }
+
+  </style>
+  <body>
+    <header>
+      <div id="title">
+        <img src="img/nintendo_logo1.jpg" width="192" height="47.1" />
+      </div>
+      <div class="wrapper">
+        <nav id="main_gnb">
+          <ul>
+            <li><a href="#">Amibo</a></li>
+            <li><a href="#">Software</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Store</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <nav id="main_lnb">
+        <ul>
+          <li><a href="#Animal">모여봐요 동물의 숲</a></li>
+          <li><a href="#Mario">마리오카트 8</a></li>
+          <li><a href="#Zelda">젤다의 전설</a></li>
+          <li><a href="#Ringfit">링피트</a></li>
+          <li><a href="#Splatoon">스플래툰 3</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="content-wrapper">
+        <div class="main-content">
+          <div class="main-image fade">
+            <a href="https://www.nintendo.co.kr/switch/aqmxa/" target="_blank">
+              <img src="img/main1.jpg" style="width: 100%" />
+            </a>
+          </div>
+          <div class="main-image fade">
+            <a href="https://www.nintendo.co.kr/switch/banra/" target="_blank">
+              <img src="img/main2.jpg" style="width: 100%" />
+            </a>
+            
+          </div>
+          <div class="main-image fade">
+            <a href="" target="_blank"></a>
+            <img src="img/main3.jpg" style="width: 100%" />
+          </div>
+          <div class="main-image fade">
+            <a href="https://www.nintendo.co.kr/switch/as8sa/index.html" target="_blank">
+              <img src="img/main4.jpg" style="width: 100%" />
+            </a>
+            
+          </div>
+          <div class="main-image fade">
+            <a href="https://www.nintendo.co.kr/switch/a82ca/" target="_blank">
+              <img src="img/main5.jpg" style="width: 100%" />
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="content">
+      <section>
+        <article>
+          <p class="game_title" id="Animal">모여봐요 동물의숲</p>
+          <img src="img/모동숲.jpg" />
+          
+            <h3 class="h3">무인도에서 시작하는 새로운 생활</h3> 
+            <p>현실과 동일한 시간이 흐르는 세계에서, 마음 가는 대로 하루하루를 보내는 「동물의 숲」 시리즈.<br>
+            낚시나 곤충 채집, 가드닝 등 집 밖에서 즐길 수 있는 요소부터 집
+            꾸미기·패션까지, 다양한 취미를 1년 내내 즐기실 수 있습니다.
+            「모여봐요 동물의 숲」에서는 「Nook Inc.」에서 제공하는 「무인도
+            이주 패키지 플랜」에 참가하여 무인도로 이주, 하나하나 내 손으로 꾸려
+            나가는 새로운 생활이 시작됩니다. 물론 무인도에서 무엇부터 시작하면
+            좋을지 막막한 당신을 위해 「Nook Inc.」가 꼼꼼하게 지원해드릴
+            예정이니 걱정 마세요!<br></p>
+            <img src="img/모동숲1.jpg" alt="임시">
+            <img src="img/모동숲2.jpg" alt="임시">
+            <img src="img/모동숲3.jpg" alt="임시">
+            <p>함께 이주한 동물들과도 다양한 교류를 통해
+            친해질 수 있습니다. 생활에 필요한 도구나 가구는 나뭇가지나 돌멩이 등
+            섬에서 구할 수 있는 것을 재료 삼아 DIY(Do It Yourself)로 직접 만들
+            수 있습니다. 가구는 실내뿐 아니라 실외에 배치할 수도 있습니다. 마음
+            가는 대로 섬을 꾸며 보세요.<br> 이번 「동물의 숲」에서는 같은 섬의
+            주민끼리 최대 4명이 동시에 플레이할 수 있습니다. 인터넷/로컬
+            통신으로는 본인 또는 친구의 섬에 모여서 최대 8명이 함께 플레이할 수
+            있습니다. 365일 다양한 표정을 보여주는 이 섬에서 느긋하게 지내도
+            되고 열심히 살아도 됩니다. <br>당신은 어떤 생활을 꿈꾸고 계신가요?
+          </p>
+        </article>
+        <article>
+          <p class="game_title" id="Mario">마리오 카트 8</p>
+          <img src="img/마리오카트.jpg" />
+          <h3 class="h3">모든 장소가 서킷!</h3>
+          <p>
+            마리오 시리즈의 캐릭터들이 등장하는 인기 레이싱 게임입니다. <br>레이싱 트랙에서 경주를 펼치며, 다양한 아이템을 활용해 경쟁자를 방해하거나 속도를 높일 수 있습니다. <br>전통적인 레이싱 모드 외에도 배틀 모드, 타임 트라이얼 등 다양한 게임 모드를 즐길 수 있습니다. 다양한 캐릭터와 차량을 선택해 자신만의 스타일을 만들어 보세요.</p> 
+            <img src="img/마리오카트1.jpg" alt="">
+            <p>고전적인 트랙부터 새로운 트랙까지, 수많은 코스를 달리며 스릴 넘치는 경주를 즐기실 수 있습니다. 친구와 함께 로컬 및 온라인 멀티플레이로 최대 12명까지 경쟁할 수 있어, 언제 어디서나 흥미진진한 레이싱을 즐길 수 있습니다. 레트로와 최신 트랙이 혼합된 이 게임은 누구나 쉽게 접근할 수 있지만, 숙련된 플레이어에게도 도전적인 요소를 제공합니다. <br>마리오 카트 8 디럭스에서 스릴 넘치는 경주를 경험해 보세요!
+          </p>
+          
+          <img src="img/마리오카트2.jpg" alt="">
+          <img src="img/마리오카트3.jpg" alt="">
+        </article>
+        <article>
+          <p class="game_title" id="Zelda">젤다의 전설 <p style="font-size: 18px;">: 티어스 오브 더 킹덤</p></p>
+          <img src="img/젤다.jpg" />
+          <h3 class="h3">날아라, 만들어라, 이어가라</h3>
+          <p>
+            끝없는 모험의 무대가 하늘로 넓어진다.<br>
+            플레이어는 주인공 링크가 되어 강력한 적들과 퍼즐을 풀며 왕국을 구해야 합니다.<br>
+            이번 시리즈에서는 새로운 능력과 무기를 통해 다양한 방식으로 적을 물리치고, 환경을 활용한 창의적인 퍼즐 해결이 가능합니다. 아름다운 그래픽과 몰입감 넘치는 스토리는 플레이어를 하이랄 세계로 깊이 빠져들게 합니다.     
+            탐험과 모험, 그리고 숨겨진 비밀을 찾아 떠나는 여정에서 여러분은 진정한 영웅이 될 것입니다. <br>젤다의 전설: 티어스 오브 더 킹덤에서 전설적인 모험을 시작하세요!
+          </p>
+          <img src="img/젤다1.gif" alt="">
+          <img src="img/젤다2.gif" alt="">
+        </article>
+        <article>
+          <p class="game_title" id="Ringfit">링피트</p>
+          <img src="img/링피트.jpg" />
+          <h3 class="h3">빅토리~</h3>
+          <p>
+            운동과 게임을 결합한 혁신적인 피트니스 RPG입니다. <br>링콘과 레그 스트랩을 사용해 다양한 운동을 통해 모험을 즐길 수 있습니다. 플레이어는 주인공이 되어 링콘을 통해 다양한 피트니스 동작을 수행하며, 적을 물리치고, 장애물을 극복해야 합니다. <br>운동 강도를 조절할 수 있어 누구나 자신의 체력에 맞게 플레이할 수 있습니다. 스토리 모드 외에도 미니게임, 짧은 운동 세션 등 다양한 모드를 제공하여 운동을 재미있게 즐길 수 있습니다. <br>링 피트 어드벤처로 집에서 쉽고 재미있게 운동을 시작해 보세요!
+          </p>
+          <img src="img/링피트.gif" style="width: 710px" >
+        </article>
+        <article>
+          <p class="game_title" id="Splatoon">스플래툰3</p>
+          <img src="img/스플래툰.jpg" />
+          <h3 class="h3">Back into the ink</h3>
+          <p>
+            플레이어는 잉크링이 되어 전장을 잉크로 채우며 팀과 함께 승리를 쟁취해야 합니다. <br>다양한 무기와 장비를 선택해 전략적으로 플레이할 수 있습니다. 팀워크가 중요한 이 게임에서는 4v4 배틀에서 다양한 전술을 구사하며 상대팀과 대결하게 됩니다. 새로운 맵과 모드, 그리고 꾸준한 업데이트를 통해 항상 신선한 재미를 제공합니다. 싱글 플레이 모드와 멀티플레이 모드가 모두 준비되어 있어, 혼자서도 친구들과도 다양한 방법으로 즐길 수 있습니다. <br>스플래툰 3에서 잉크의 세계로 뛰어들어 보세요!
+          </p>
+          <img src="img/스플래툰1.jpg" alt="임시">
+          <img src="img/스플래툰2.jpg" alt="임시">
+            
+        </article>
+      </section>
+      <aside>
+        <!-- 입력양식 태그로 두개의 라디오 버튼 생성, 첫번째 버튼이 체크된 상태로 시작-->
+        <input id="first" type="radio" name="tab" checked="checked" />
+        <input id="second" type="radio" name="tab" />
+        <div class="buttons">
+          <label for="first">Store</label>
+          <label for="second">Sale</label>
+        </div>
+        <section class="tab_item" id="tab_item1">
+          <ul>
+            <li class="item">
+              <a href="#">
+                <div class="thumbnail">
+                  <img src="img/탭모동숲.jpg" />
+                </div>
+                <div class="description">
+                  <strong>모여봐요 동물의 숲</strong>
+                  <span>₩64,800</span>
+                </div>
+              </a>
+              
+            </li>
+            <li class="item">
+              <a href="#">
+                <div class="thumbnail">
+                  <img src="img/탭루이지.jpg" />
+                </div>
+                <div class="description">
+                  <strong>루이지 맨션 3</strong>
+                  <span>₩64,800</span>
+                </div>
+              </a>
+              
+            </li>
+            <li class="item">
+              <a href="#">
+                <div class="thumbnail">
+                  <img src="img/탭산나비.jpg" />
+                </div>
+                <div class="description">
+                  <strong>SANABI</strong>
+                  <span>₩15,500</span>
+                </div>
+              </a>
+              
+            </li>
+            <li class="item">
+              <a href="#">
+                <div class="thumbnail">
+                  <img src="img/탭스포츠.jpg" />
+                </div>
+                <div class="description">
+                  <strong>Nintendo Switch Sports</strong>
+                  <span>₩44,800</span>
+                </div>
+              </a>
+              
+            </li>
+          </ul>
+        </section>
+        <section class="tab_item" id="tab_item2">
+          <ul>
+            <li class="item">
+              <a href="#">
+                <div class="thumbnail">
+                  <img src="img/탭마리오파티.jpg
+                  " />
+                </div>
+                <div class="description">
+                  <strong>마리오 파티 슈퍼스타즈</strong>
+                  <span>₩45,360</span> <span class="sale">₩64,800</span>
+                </div>
+              </a>
+             
+            </li>
+            <li class="item">
+              <a href="#">
+                <div class="thumbnail">
+                  <img src="img/탭스플래툰.jpg" />
+                </div>
+                <div class="description">
+                  <strong>스플래툰 3</strong>
+                  <span>₩45,360</span> <span class="sale">₩64,800</span>
+                </div>
+              </a>
+              
+            </li>
+            <li class="item">
+              <a href="#">
+                <div class="thumbnail">
+                  <img src="img/탭데더다.jpg" />
+                </div>
+                <div class="description">
+                  <strong>데이브 더 다이브</strong>
+                  <span>₩45,360</span> <span class="sale">₩24,000</span>
+                </div>
+              </a>
+              
+            </li>
+            <li class="item">
+              <a href="#">
+                <div class="thumbnail">
+                  <img src="img/탭마리오테니스.jpg" />
+                </div>
+                <div class="description">
+                  <strong>마리오 테니스 에이스</strong>
+                  <span>₩45,360</span> <span class="sale">₩64,000</span>
+                </div>
+              </a>
+              
+            </li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+    
+    <div id="bottom">
+      <a href="https://www.youtube.com/channel/UCRCK5FCJtomQT3b88jXI_DA" target="_blank"><img src="img/icon_youtube.png"></a>
+      <a href="https://www.facebook.com/Nintendo.kr"target="_blank"><img src="img/icon_facebook.png"></a>
+      <a href="https://x.com/Nintendo_Korea"target="_blank"><img src="img/icon_x.png"></a>
+      <a href="https://pf.kakao.com/_Xxiwzxj"target="_blank"><img src="img/icon_kakao.png"></a>
+    </div>
+    <footer>
+      <h3 id="slogan">Anytime, Anywhere, with Anyone</h3>
+      <address>park jeong sun</address>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
